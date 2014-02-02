@@ -6,6 +6,7 @@
         }, options );
 
 		var id = this.attr("id");
+		var mobile = true;
 
 		$("a[href$=" + id + "]").addClass("blueMobileMenuIcon").on("click", function() {
 			$("#" + id).slideToggle();
@@ -19,20 +20,22 @@
 
 		this.find("li").has("ul").addClass("closed").prepend("<img class='icon' src='imgs/icon_arrow_right.png'/>");
 
-		this.on("click", ".icon", function(e) {
-			$(this).parent().find("ul").first().slideToggle();
+		if(mobile === true) {
+			this.on("click", ".icon", function(e) {
+				$(this).parent().find("ul").first().slideToggle();
 
-			if( $(this).parent().hasClass("closed") ) {
-				$(this).attr("src", "imgs/icon_arrow_down.png");
-				$(this).parent().removeClass("closed").addClass("open");
-			}
-			else {
-				$(this).attr("src", "imgs/icon_arrow_right.png");
-				$(this).parent().removeClass("open").addClass("closed");
-			}
-				
-			e.stopPropagation();
-		});
+				if( $(this).parent().hasClass("closed") ) {
+					$(this).attr("src", "imgs/icon_arrow_down.png");
+					$(this).parent().removeClass("closed").addClass("open");
+				}
+				else {
+					$(this).attr("src", "imgs/icon_arrow_right.png");
+					$(this).parent().removeClass("open").addClass("closed");
+				}
+					
+				e.stopPropagation();
+			});
+		}
 
 		return this;
 	}
